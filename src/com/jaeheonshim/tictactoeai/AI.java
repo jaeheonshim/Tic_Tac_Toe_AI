@@ -38,38 +38,31 @@ public class AI {
 		  int aiCount = 0;
 		  int humanCount = 0;
 
-		  for(int i = 0; i < board.getBoard().length; i++) {
-		  	 for(int j = 0; j < board.getBoard()[i].length; j++) {
-		  	 	 if(board.getBoard()[i][j] == ai) {
-				 	 aiCount++;
-				 } else if(board.getBoard()[i][j] == human) {
-		  	 	 	 humanCount++;
-				 }
-			 }
+		  for (int i = 0; i < board.getBoard().length; i++) {
+				for (int j = 0; j < board.getBoard()[i].length; j++) {
+					 if (board.getBoard()[i][j] == ai) {
+						  aiCount++;
+					 } else if (board.getBoard()[i][j] == human) {
+						  humanCount++;
+					 }
+				}
 		  }
 
+		  int bestScore;
 		  if (humanCount > aiCount) {
-				int bestScore = -1;
-				for (Integer[] position : board.getAvailablePositions()) {
-					 board.place(position, ai);
-					 int currentScore = minimax(board);
-					 board.place(position, Board.CellState.BLANK);
-					 if (currentScore > bestScore) {
-						  bestScore = currentScore;
-					 }
-				}
-				return bestScore;
+				bestScore = -1;
 		  } else {
-				int bestScore = 1; // calling it best score is confusing because we want this to be the lowest score to see the worst possible scenario
-				for (Integer[] position : board.getAvailablePositions()) {
-					 board.place(position, human);
-					 int currentScore = minimax(board);
-					 board.place(position, Board.CellState.BLANK);
-					 if (currentScore < bestScore) {
-						  bestScore = currentScore;
-					 }
-				}
-				return bestScore;
+				bestScore = 1;
 		  }
+
+		  for (Integer[] position : board.getAvailablePositions()) {
+				board.place(position, humanCount > aiCount ? ai : human);
+				int currentScore = minimax(board);
+				board.place(position, Board.CellState.BLANK);
+				if (humanCount > aiCount ? currentScore > bestScore : currentScore < bestScore) {
+					 bestScore = currentScore;
+				}
+		  }
+		  return bestScore;
 	 }
 }
