@@ -41,7 +41,6 @@ public class Board {
         for (int i = 0; i < board.length; i++) {
             checkingPlayer = board[0][i];
             if (checkingPlayer == CellState.BLANK) {
-                checkingPlayer = null;
                 continue;
             }
             for (int j = 0; j < board[i].length; j++) {
@@ -56,14 +55,13 @@ public class Board {
         }
 
         //check rows
-        for (int i = 0; i < board.length; i++) {
-            checkingPlayer = board[i][0];
+        for (CellState[] cellStates : board) {
+            checkingPlayer = cellStates[0];
             if (checkingPlayer == CellState.BLANK) {
-                checkingPlayer = null;
                 continue;
             }
-            for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j] != checkingPlayer) {
+            for (CellState cellState : cellStates) {
+                if (cellState != checkingPlayer) {
                     checkingPlayer = null;
                     break;
                 }
@@ -85,9 +83,9 @@ public class Board {
         }
 
         //check tie;
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j] == CellState.BLANK) {
+        for (CellState[] cellStates : board) {
+            for (CellState cellState : cellStates) {
+                if (cellState == CellState.BLANK) {
                     return null;
                 }
             }
