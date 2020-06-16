@@ -11,7 +11,7 @@ public class Main {
 		  board.printBoard();
 		  while (board.checkWon() == null) {
 				Integer[] pos;
-				boolean inputValid = true;
+				boolean inputValid;
 				do {
 					 System.out.print("Enter position (x, y): ");
 					 inputValid = true;
