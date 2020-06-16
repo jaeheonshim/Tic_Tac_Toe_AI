@@ -5,6 +5,6 @@ You can try to beat it, but I guareentee you won't succeed.
 This program creates a tic tac toe game that you cannot beat. Your opponent is a computer program running the minimax algorithm, and as the computer can see all possible outcomes at every stage of the game, the best you can do is tie with it.
 
 ### How to play
-Download or clone the repository to your computer, and then run the main method in the AI class.
+Download or clone the repository to your computer, and then run the main method in the Main class.
 You will play as O, and the AI will play as X (by default).
 You will need the Java JDK to run this program.
